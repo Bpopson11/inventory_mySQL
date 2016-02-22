@@ -7,7 +7,7 @@
 
     require_once "src/Inventory.php";
 
-    $server = 'mysql:host=localhost;dbname=my_inventory';
+    $server = 'mysql:host=localhost;dbname=my_inventory_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -34,6 +34,24 @@
             $result = Inventory::getAll();
             $this->assertEquals($test_list, $result[0]);
         }
-      }
+
+        function test_getAll()
+        {
+            //Arrange
+            $item1 = "Newton the turtle";
+            $item2 = "Boog the fat bear";
+            $test_list1 = new Inventory($item1);
+            $test_list1->save();
+            $test_list2 = new Inventory($item2);
+            $test_list2->save();
+
+            //Act
+            $result = Inventory::getAll();
+
+            //Assert
+            $this->assertEquals([$test_list1, $test_list2], $result);
+        }
+
+    }
 
 ?>

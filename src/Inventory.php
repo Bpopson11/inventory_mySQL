@@ -26,20 +26,9 @@ class Inventory
         return $this->id;
     }
 
-    // function setPic($new_pic)
-    // {
-    //     $this->pic = $new_pic;
-    // }
-    //
-    // function getPic()
-    // {
-    //     return $this->pic;
-    // }
-
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO inventory (item) VALUES ('{$this->getItem()}');");
-        // $GLOBALS['DB']->exec("INSERT INTO taks (pic) VALUES ('{$this->getPic()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
