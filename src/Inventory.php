@@ -3,13 +3,12 @@ class Inventory
 {
     private $item;
     private $id;
-    private $pic;
+    // private $pic;
 
-    function __construct($item, $id = null, $pic)
+    function __construct($item, $id = null)
     {
         $this->item = $item;
         $this->id = $id;
-        $this->pic = $pic;
     }
 
     function setItem($new_item)
@@ -27,40 +26,39 @@ class Inventory
         return $this->id;
     }
 
-    function setPic($new_pic)
-    {
-        $this->pic = $new_pic;
-    }
-
-    function getPic()
-    {
-        return $this->pic;
-    }
+    // function setPic($new_pic)
+    // {
+    //     $this->pic = $new_pic;
+    // }
+    //
+    // function getPic()
+    // {
+    //     return $this->pic;
+    // }
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO tasks (item) VALUES ('{$this->getItem()}');");
-        $GLOBALS['DB']->exec("INSERT INTO taks (pic) VALUES ('{$this->getPic()}');");
+        $GLOBALS['DB']->exec("INSERT INTO inventory (item) VALUES ('{$this->getItem()}');");
+        // $GLOBALS['DB']->exec("INSERT INTO taks (pic) VALUES ('{$this->getPic()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
     static function getAll()
     {
-        $returned_lists = $GLOBAL['DB']->query("SELECT * FROM list;");
-        $list = array();
-        foreach ($returned_lists as $list) {
-            $item = $list['item'];
-            $id = $list['id'];
-            $pic = $list['pic'];
-            $new_list = new Inventory($item, $id, $pic);
-            array_push($list, $new_list);
+        $returned_inventory = $GLOBALS['DB']->query("SELECT * FROM inventory;");
+        $lists = array();
+        foreach($returned_inventory as $inventory) {
+            $item = $inventory['item'];
+            $id = $inventory['id'];
+            $new_list = new Inventory($item, $id);
+            array_push($lists, $new_list);
         }
-        return $list;
+        return $lists;
     }
 
     static function deleteAll()
     {
-        $GLOBALS['DB']->exec("DELETE FROM list;");
+        $GLOBALS['DB']->exec("DELETE FROM inventory;");
     }
 
     static function find()
@@ -76,4 +74,4 @@ class Inventory
         return $found_list;
     }
   }
-?>  
+?>
