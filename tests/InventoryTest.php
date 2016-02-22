@@ -24,8 +24,9 @@
         function test_save()
         {
             //Arrange
-            $item = "Newton the turtle";
-            $test_list = new Inventory($item);
+            $item = "Newton";
+            $description = "A mischevious turtle";
+            $test_list = new Inventory($item, $description);
 
             //Act
             $test_list->save();
@@ -38,11 +39,13 @@
         function test_getAll()
         {
             //Arrange
-            $item1 = "Newton the turtle";
-            $item2 = "Boog the fat bear";
-            $test_list1 = new Inventory($item1);
+            $item1 = "Newton";
+            $description1 = "A mischevious turtle";
+            $item2 = "Boog";
+            $description2 = "The fat and floppy bear";
+            $test_list1 = new Inventory($item1, $description1);
             $test_list1->save();
-            $test_list2 = new Inventory($item2);
+            $test_list2 = new Inventory($item2, $description2);
             $test_list2->save();
 
             //Act
@@ -56,8 +59,9 @@
         {
           //Arrange
           $item = "Newton the turtle";
+          $description = "A mischevious turtle";
           $id = 1;
-          $test_Inventory = new Inventory($item, $id);
+          $test_Inventory = new Inventory($item, $description, $id);
 
           //Act
           $result = $test_Inventory->getId();
@@ -69,11 +73,13 @@
         function test_find()
         {
             //Arrange
-            $item = "Newton the turtle";
-            $item2 = "Boog the fat bear";
-            $test_list = new Inventory($item);
+            $item = "Newton";
+            $description = "A mischevious turtle";
+            $item2 = "Boog";
+            $description2 = "The fat and floppy bear";
+            $test_list = new Inventory($item, $description);
             $test_list->save();
-            $test_list2 = new Inventory($item2);
+            $test_list2 = new Inventory($item2, $description2);
             $test_list2->save();
 
             //Act

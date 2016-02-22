@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Inventory</title>
+</head>
+<body>
+    <h1>Your Stuffed Animal Friend List!!</h1>
+
+    {% if listss is not empty %}
+        <p>Here are all your stuffed animal friends:</p>
+        <ul>
+            {% for list in lists %}
+                <li>{{ list.getItem }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action='/tasks' method='post'>
+        <label for='item'>Friend Name</label>
+        <input id='item' name='item' type='text'>
+
+        <button type='submit'>Add friend</button>
+    </form>
+    <form action='/delete_lists' method='post'>
+        <button type='submit'>Clear</button>
+    </form>
+</body>
+</html>
