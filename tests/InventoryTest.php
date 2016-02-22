@@ -52,6 +52,20 @@
             $this->assertEquals([$test_list1, $test_list2], $result);
         }
 
+        function test_getId()
+        {
+          $item = "Newton the turtle";
+          $id = 1;
+          $test_Inventory = new Inventory($item, $id);
+
+          //Act
+          $result = $test_Inventory->getId();
+
+          //Assert
+          $this->assertEquals(1, $result);
+
+        }
+
     }
 
 ?>
