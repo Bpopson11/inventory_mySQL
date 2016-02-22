@@ -54,6 +54,7 @@
 
         function test_getId()
         {
+          //Arrange
           $item = "Newton the turtle";
           $id = 1;
           $test_Inventory = new Inventory($item, $id);
@@ -63,9 +64,25 @@
 
           //Assert
           $this->assertEquals(1, $result);
-
         }
 
+        function test_find()
+        {
+            //Arrange
+            $item = "Newton the turtle";
+            $item2 = "Boog the fat bear";
+            $test_list = new Inventory($item);
+            $test_list->save();
+            $test_list2 = new Inventory($item2);
+            $test_list2->save();
+
+            //Act
+            $id = $test_list->getId();
+            $result = Inventory::find($id);
+
+            //Assert
+            $this->assertEquals($test_list, $result);
+        }
     }
 
 ?>

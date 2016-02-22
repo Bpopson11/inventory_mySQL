@@ -50,7 +50,7 @@ class Inventory
         $GLOBALS['DB']->exec("DELETE FROM inventory;");
     }
 
-    static function find()
+    static function find($search_id)
     {
         $found_list = null;
         $lists = Inventory::getAll();
