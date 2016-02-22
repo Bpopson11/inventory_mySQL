@@ -5,19 +5,23 @@
 <body>
     <h1>Your Stuffed Animal Friend List!!</h1>
 
-    {% if listss is not empty %}
+    {% if lists is not empty %}
         <p>Here are all your stuffed animal friends:</p>
         <ul>
             {% for list in lists %}
                 <li>{{ list.getItem }}</li>
+                <ul>
+                  <li>{{ list.getDescription }}</li>
+                </ul>
             {% endfor %}
         </ul>
     {% endif %}
 
-    <form action='/tasks' method='post'>
+    <form action='/lists' method='post'>
         <label for='item'>Friend Name</label>
         <input id='item' name='item' type='text'>
-
+        <label for='description'>Friend Description</label>
+        <input id='description' name='description' type='text'>
         <button type='submit'>Add friend</button>
     </form>
     <form action='/delete_lists' method='post'>

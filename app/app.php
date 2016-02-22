@@ -4,7 +4,7 @@
 
     $app = new Silex\Application();
 
-    $server = 'mysql:host=localhost;dbname=to_do';
+    $server = 'mysql:host=localhost;dbname=my_inventory';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -13,22 +13,26 @@
     'twig.path' => __DIR__.'/../views'
     ));
 
+
+
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig');
     });
 
     $app->get("/lists", function() use ($app) {
-        return $app['twig']->render('items.html.twig', array('lists' => Inventory::getAll()));
+        return $app['twig']->render('inventory.html.twig', array('lists' => Inventory::getAll()));
     });
 
-        $app->post("/lists", function() use ($app) {
-        $inventory = new Inventory($_POST['item']);
+    $app->post("/lists", function() use ($app) {
+        $inventory = new Inventory($_POST['item'], $_POST['description']);
         $inventory->save();
         return $app['twig']->render('inventory.html.twig', array('lists' => Inventory::getAll()));
       });
 
+
+
       $app->post("/delete_lists", function() use ($app) {
-          Task::deleteAll();
+          Inventory::deleteAll();
           return $app['twig']->render('index.html.twig');
       });
 
