@@ -12,6 +12,7 @@
                 <li>{{ list.getItem }}</li>
                 <ul>
                   <li>{{ list.getDescription }}</li>
+                  <li>{{ list.getDate }}</li>
                 </ul>
             {% endfor %}
         </ul>
@@ -22,6 +23,8 @@
         <input id='item' name='item' type='text'><br><br>
         <label for='description'>Friend Description:</label>
         <input id='description' name='description' type='text'><br><br>
+        <label for='date'>Date you met/got your friend:</label>
+        <input id='date' name='date' type='text'><br><br>
         <button type='submit'>Add friend</button>
     </form>
     <form action='/delete_lists' method='post'>

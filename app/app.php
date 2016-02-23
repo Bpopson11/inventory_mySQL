@@ -21,10 +21,8 @@
         return $app['twig']->render('inventory.html.twig', array('lists' => Inventory::getAll()));
     });
 
-    $app['debug'] = true;
-
     $app->post("/lists", function() use ($app) {
-        $inventory = new Inventory($_POST['item'], $_POST['description']);
+        $inventory = new Inventory($_POST['item'], $_POST['description'], $_POST['date_obtained']);
         $inventory->save();
         return $app['twig']->render('inventory.html.twig', array('lists' => Inventory::getAll()));
       });
